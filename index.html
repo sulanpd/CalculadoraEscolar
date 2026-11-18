@@ -248,15 +248,7 @@
 <body>
     <div class="calculator-container">
         <h1 class="title">📚 Calculadora de Idade Escolar</h1>
-        <p class="subtitle">Descubra a idade atual e a série escolar correspondente, ou projete para 2026, com base na data de referência de 31 de março.</p>
-        
-        <!-- Abas de seleção de ano -->
-        <div class="tabs">
-            <button class="tab-btn active" data-year="current">Ano Atual</button>
-            <button class="tab-btn" data-year="2026">Projeção 2026</button>
-        </div>
-
-        <div class="input-group">
+        <p class="subtitle">Descubra a idade e a série escolar da criança para o ano letivo de 2027, com base na data de corte de 31 de março.</p><div class="input-group">
             <label for="birthDate" class="input-label">Data de Nascimento da Criança:</label>
             <input type="date" id="birthDate" class="date-input" required>
         </div>
@@ -276,7 +268,7 @@
         </div>
         
         <div class="reference-info">
-            <div class="reference-title">📅 Referência - 31 de Março</div>
+            <div class="reference-title">📅 Referência - 31 de Março de 2027</div>
             <div class="grade-table">
                 <strong>4 Anos:</strong> Pré 1<br>
                 <strong>5 Anos:</strong> Pré 2<br>
@@ -290,8 +282,8 @@
     </div>
 
     <script>
-        // Variável global para o ano de referência, inicializada com o ano atual
-        let selectedReferenceYear = new Date().getFullYear();
+        // Ano letivo fixo da calculadora
+        const selectedReferenceYear = 2027;
 
         function calculateAge() {
             const birthDateInput = document.getElementById('birthDate');
@@ -371,35 +363,6 @@
             if (e.key === 'Enter') {
                 calculateAge();
             }
-        });
-
-        // --- Lógica das Abas ---
-        // Adiciona os event listeners após o carregamento do DOM
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.tab-btn');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remover 'active' de todas as abas
-                    tabs.forEach(t => t.classList.remove('active'));
-                    // Adicionar 'active' à aba clicada
-                    tab.classList.add('active');
-                    
-                    // Atualizar o ano de referência global
-                    const yearType = tab.getAttribute('data-year');
-                    if (yearType === 'current') {
-                        selectedReferenceYear = new Date().getFullYear();
-                    } else {
-                        selectedReferenceYear = parseInt(yearType, 10);
-                    }
-                    
-                    // Opcional: recalcula automaticamente se já houver uma data inserida
-                    const birthDateInput = document.getElementById('birthDate');
-                    if (birthDateInput.value) {
-                        calculateAge();
-                    }
-                });
-            });
         });
     </script>
 </body>
